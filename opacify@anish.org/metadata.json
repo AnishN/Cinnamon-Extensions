@@ -1,0 +1,11 @@
+{
+    "last-edited": "1386052001", 
+    "uuid": "opacify@anish.org", 
+    "description": "Fade out the current window that the user is resizing or dragging.", 
+    "cinnamon-version": [
+        "1.8", 
+        "1.9", 
+        "2.0"
+    ], 
+    "name": "Opacify Windows"
+}
