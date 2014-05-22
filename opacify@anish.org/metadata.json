@@ -4,7 +4,8 @@
     "cinnamon-version": [
         "1.8", 
         "1.9", 
-        "2.0"
+        "2.0",
+        "2.2"
     ], 
     "name": "Opacify Windows",
     "url": "https://github.com/AnishN/Cinnamon-Extensions.git"
