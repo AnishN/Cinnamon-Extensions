@@ -1,0 +1,13 @@
+{
+    "name": "Opacify Windows", 
+    "cinnamon-version": [
+        "1.8", 
+        "1.9", 
+        "2.0", 
+        "2.2"
+    ], 
+    "url": "https://github.com/AnishN/Cinnamon-Extensions.git", 
+    "description": "Fade out the current window that the user is resizing or dragging.", 
+    "uuid": "opacify@anish.org", 
+    "last-edited": "1403391796"
+}
