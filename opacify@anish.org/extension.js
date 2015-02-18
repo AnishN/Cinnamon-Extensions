@@ -1,10 +1,10 @@
 /*const St = imports.gi.St;
-const Meta = imports.gi.Meta;
 const Lang = imports.lang;
 const Main = imports.ui.main;*/
 const Clutter = imports.gi.Clutter;
 const Settings = imports.ui.settings;
 const Tweener = imports.ui.tweener;
+const Meta = imports.gi.Meta;
 
 let beginGrabOpId;
 let endGrabOpId;
@@ -30,6 +30,36 @@ SettingsHandler.prototype = {
     }
 }
 
+function changeOpacity(display, screen, window, op, duration, opacity, effect) {
+    let actor = window.get_compositor_private();
+    if (!actor) { return; }
+    if ((op == Meta.GrabOp.MOVING) || (op == Meta.GrabOp.KEYBOARD_MOVING) ||
+        (op == Meta.GrabOp.RESIZING_E) || (op == Meta.GrabOp.RESIZING_N) ||
+        (op == Meta.GrabOp.RESIZING_NE) || (op == Meta.GrabOp.RESIZING_NW) ||
+        (op == Meta.GrabOp.RESIZING_S) || (op == Meta.GrabOp.RESIZING_SE) ||
+        (op == Meta.GrabOp.RESIZING_SW) || (op == Meta.GrabOp.RESIZING_W) ||
+        (op == Meta.GrabOp.KEYBOARD_RESIZING_E) || (op == Meta.GrabOp.KEYBOARD_RESIZING_N) ||
+        (op == Meta.GrabOp.KEYBOARD_RESIZING_NE) || (op == Meta.GrabOp.KEYBOARD_RESIZING_NW) ||
+        (op == Meta.GrabOp.KEYBOARD_RESIZING_S) || (op == Meta.GrabOp.KEYBOARD_RESIZING_SE) ||
+        (op == Meta.GrabOp.KEYBOARD_RESIZING_SW) || (op == Meta.GrabOp.KEYBOARD_RESIZING_W)||
+        (op == Meta.GrabOp.KEYBOARD_RESIZING_UNKNOWN))
+    {
+        Tweener.addTween(actor, {
+        opacity: opacity,
+        time: duration/1000,
+        transition: effect });
+    }
+}
+
+function onBeginGrabOp(display, screen, window, op) {
+    changeOpacity(display, screen, window, op, settings.beginTime, settings.opacity, settings.beginEffect);
+}
+
+function onEndGrabOp(display, screen, window, op) {
+    changeOpacity(display, screen, window, op, settings.endTime, 255, settings.endEffect);
+}
+
+/*
 function onBeginGrabOp(display, screen, window, op) {
     let compositor = window.get_compositor_private();
 	Tweener.addTween(compositor, { 
@@ -38,7 +68,9 @@ function onBeginGrabOp(display, screen, window, op) {
 		transition: settings.beginEffect
     });
 }
+*/
 
+/*
 function onEndGrabOp(display, screen, window, op) {
     let compositor = window.get_compositor_private();
 	Tweener.addTween(compositor, { 
@@ -47,6 +79,7 @@ function onEndGrabOp(display, screen, window, op) {
 		transition: settings.endEffect
     });
 }
+*/
 
 function enable() 
 {
